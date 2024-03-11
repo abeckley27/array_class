@@ -58,6 +58,7 @@ array<T>::array(int N) {
     }
 }
 
+//copy constructor
 template<typename T>
 inline array<T>::array(int N, T value)
 {
@@ -88,7 +89,7 @@ inline void array<T>::clear()
 
 //Other method implementations
 template<typename T>
-inline T& array<T>::operator[](int i)
+T& array<T>::operator[](int i)
 {
     return data[i];
 }
@@ -98,6 +99,17 @@ template <typename T>
 size_t array<T>::size() const {
     return n_alloc;
 }
+
+template<typename T>
+void array<T>::print()
+{
+    for (int i = 0; i < n_alloc - 1; i++)
+    {
+        std::cout << data[i] << ", ";
+    }
+    std::cout << data[n_alloc - 1] << std::endl;
+}
+
 
 
 #endif // ARRAY_H
