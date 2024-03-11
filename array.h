@@ -19,6 +19,7 @@ public:
 
     // Accessor methods:
     size_t size() const; // Returns the size of the array
+    size_t data_size() const;   // Returns the size of the elements, T
     T& operator[](int i); // Access element at the specified index
     void print();
     
@@ -27,6 +28,8 @@ public:
     
     
 
+    //
+    
 
 private:
 
@@ -87,6 +90,12 @@ T& array<T>::operator[](int i)
 template <typename T>
 size_t array<T>::size() const {
     return n_alloc;
+}
+
+template<typename T>
+inline size_t array<T>::data_size() const
+{
+    return T_size;
 }
 
 template<typename T>
