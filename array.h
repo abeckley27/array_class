@@ -11,7 +11,6 @@ public:
     array();
 
     //Other constructors
-    array(int n);               //Initialize to length n, using the default constructor for T
     array(int n, T);           //Initialize by setting the entire array to a certain value
     array(const array<T>&);      //copy constructor
 
@@ -47,18 +46,7 @@ array<T>::array() {
     n_alloc = 0;
 }
 
-template <typename T>
-array<T>::array(int N) {
 
-    T_size = sizeof(T);
-    n_alloc = N;
-    T* data = new T[N];
-    for (size_t i = 0; i < n_alloc; ++i) {
-        data[i] = T();  // Default constructor for type T
-    }
-}
-
-//copy constructor
 template<typename T>
 inline array<T>::array(int N, T value)
 {
@@ -68,6 +56,7 @@ inline array<T>::array(int N, T value)
     for (int i = 0; i < N; i++) { data[i] = value; }
 }
 
+//copy constructor
 template<typename T>
 inline array<T>::array(const array<T>& a1)
 {

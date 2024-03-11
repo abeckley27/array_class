@@ -7,10 +7,12 @@
 
 int main(int argc, char* argv[])
 {
-	array<float> lst(10, 1.5);
-	lst[2] = 7;
-
-	lst.print();
+	array<int> lst1(8, 3298);
+	array<double> lst2(10, 3.14159);
+	array<float> lst3(1000, 0);
+	lst1.print();
+	lst2.print();
+	lst3.print();
 
 	return 0;
 }
