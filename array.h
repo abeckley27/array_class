@@ -21,6 +21,7 @@ public:
     // Accessor methods:
     size_t size() const; // Returns the size of the array
     size_t data_size() const;   // Returns the size of the elements, T
+    size_t count(const T& a);        // Returns the number of elements equal to a
     
     void print();
     T& operator[](int i); // Access element at the specified index
@@ -33,7 +34,7 @@ public:
     void subtract_arrays(const array<T>& a2, const array<T> a3);
 
     T operator*(const array<T>& a1);   //dot product
-    
+    void linspace(double, double, int);
 
     //comparison
     bool operator==(const array<T>& a1);
@@ -177,6 +178,17 @@ inline T array<T>::operator*(const array& a1)
 }
 
 template<typename T>
+void array<T>::linspace(double start, double stop, int N)
+{
+    this->n_alloc = N;
+    this->T_size = sizeof(double);
+    this->data = new double[N];
+
+    double step = (stop - start) / (N - 1);
+    for (int i = 0; i < N; i++) { data[i] = start + i * step; }
+}
+
+template<typename T>
 inline bool array<T>::operator==(const array<T>& a1)
 {
     bool output = true;
@@ -199,6 +211,17 @@ template<typename T>
 inline size_t array<T>::data_size() const
 {
     return T_size;
+}
+
+template<typename T>
+inline size_t array<T>::count(const T& a)
+{
+    size_t output = 0;
+    for (int i = 0; i < n_alloc; i++)
+    {
+        if (data[i] == a) { output += 1; }
+    }
+    return output;
 }
 
 template<typename T>
