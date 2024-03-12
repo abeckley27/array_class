@@ -38,7 +38,10 @@ public:
 
     //comparison
     bool operator==(const array<T>& a1);
-    
+
+    //Re-sizing
+    void push_back(T);
+    void push_front(T);
 
 private:
 
@@ -199,6 +202,34 @@ inline bool array<T>::operator==(const array<T>& a1)
         }
     }
     return output;
+}
+
+template<typename T>
+inline void array<T>::push_back(T value)
+{
+    T* new_data = new T[n_alloc + 1];
+    for (int i = 0; i < n_alloc; i++) {
+        new_data[i] = data[i];
+    }
+    new_data[n_alloc] = value;
+
+    delete[] data;
+    data = new_data;
+    n_alloc++;
+}
+
+template<typename T>
+inline void array<T>::push_front(T value)
+{
+    T* new_data = new T[n_alloc + 1];
+    for (int i = 0; i < n_alloc; i++) {
+        new_data[i+1] = data[i];
+    }
+    new_data[0] = value;
+
+    delete[] data;
+    data = new_data;
+    n_alloc++;
 }
 
 
